@@ -307,7 +307,7 @@
         liff.getProfile().then(profile => {
           // lineName = profile.displayName;
           lineId = profile.userId;
-          document.getElementById('cv').value = profile.userId;
+          alert(lineId);
         });
       }
     })
@@ -416,3 +416,4 @@ document.getElementById('gen-btn').addEventListener('click', function() {
   '<div style="text-align:center;color:#666;font-size:0.8em;margin-top:2px;">' +
   result.barcodeString.replace(/\r/g, '<span style="color:red;font-weight:bold">⏎</span>') +
   '</div>'; -->
+
