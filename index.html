@@ -311,7 +311,7 @@
 }
 
 function fetchDataFromGAS(userId) {
-  const url = "https://script.google.com/macros/s/AKfycbzQps7pewrJIibP6x95QXGsucpOYD4UGUmSGKPKc_B48si-63gr6MOdVgQLtgnEeZqVvg/exec?userId=" + encodeURIComponent(userId);
+  const url = "https://script.google.com/macros/s/AKfycbw9VAcuZ-uriTRmt5e_2ShVytVngyopHNEYVuMgkpY7R_jEcPjGeufTYE2_R3kZ2-X1XA/exec?userId=" + encodeURIComponent(userId);
   fetch(url)
     .then(response => response.json())
     .then(data => {
@@ -421,5 +421,6 @@ document.getElementById('gen-btn').addEventListener('click', function() {
   '<div style="text-align:center;color:#666;font-size:0.8em;margin-top:2px;">' +
   result.barcodeString.replace(/\r/g, '<span style="color:red;font-weight:bold">⏎</span>') +
   '</div>'; -->
+
 
 
