@@ -299,23 +299,28 @@
 
    window.onload = function() {
       
-      liff.init({ liffId: "2008016148-J6xE72LD" })
-    .then(() => {
-      if (!liff.isLoggedIn()) {
-        liff.login();
-      } else {
-        liff.getProfile().then(profile => {
-          // lineName = profile.displayName;
-          lineId = profile.userId;
-          alert(lineId);
-        });
-      }
-    })
-    .catch(err => {
-      console.error("LIFF init error", err);
-    });
-    // google.script.run.withSuccessHandler(initializeData).getData(lineId);
+      liff.init({ liffId: "2008016148-J6xE72LD" }).then(() => {
+          if (!liff.isLoggedIn()) {
+      liff.login();
+    } else {
+      liff.getProfile().then(profile => {
+        fetchDataFromGAS(profile.userId);
+      });
     }
+  });
+}
+
+function fetchDataFromGAS(userId) {
+  const url = "https://script.google.com/macros/s/AKfycbzQps7pewrJIibP6x95QXGsucpOYD4UGUmSGKPKc_B48si-63gr6MOdVgQLtgnEeZqVvg/exec?userId=" + encodeURIComponent(userId);
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      initializeData(data);
+    })
+    .catch(error => {
+      document.body.innerHTML = "<h2>เกิดข้อผิดพลาดในการโหลดข้อมูล Google Apps Script</h2><p>" + error + "</p>";
+    });
+}
 
     function getSelectedQRData() {
     const company = document.getElementById('company').value;
@@ -416,4 +421,5 @@ document.getElementById('gen-btn').addEventListener('click', function() {
   '<div style="text-align:center;color:#666;font-size:0.8em;margin-top:2px;">' +
   result.barcodeString.replace(/\r/g, '<span style="color:red;font-weight:bold">⏎</span>') +
   '</div>'; -->
+
 
